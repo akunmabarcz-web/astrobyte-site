@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How it works · Astrobyte</title>
+<meta name="description" content="How an Astrobyte run works: the task file, the Google OAuth authorisation, the YouTube APIs used, and what is stored on disk.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><img src="icon-64.png" alt="Astrobyte app icon" width="32" height="32">Astrobyte</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="how-it-works.html" aria-current="page">How it works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="breadcrumb"><a href="index.html">Home</a> / How it works</p>
+  <h1>How it works</h1>
+  <p class="lead">Astrobyte is a command-line program. It runs when the owner starts it, either by hand or
+  on a schedule set up on the same computer. There is no server in the middle and no web dashboard.</p>
+
+  <h2>One run, four steps</h2>
+  <ol>
+    <li><strong>A task file is read.</strong> Each run is described in a short, readable text file: which
+    episode, which step, which platform. Nothing is hard-coded into the tool itself.</li>
+    <li><strong>The tool authorises.</strong> It uses a Google OAuth token that the channel owner granted
+    once, on this machine, for this channel. If a token is missing or expired, the tool stops and asks for
+    re-authorisation instead of continuing.</li>
+    <li><strong>The work is done through the official APIs.</strong> Uploads, analytics reads and comment
+    moderation all go through Google's own endpoints for the owner's own channel.</li>
+    <li><strong>The result is logged.</strong> Every run writes what it did and what came back, so the
+    owner can check the outcome afterwards rather than trusting a silent success.</li>
+  </ol>
+
+  <h2>Google APIs used</h2>
+  <table>
+    <tr><th>API</th><th>What it is used for</th><th>Access</th></tr>
+    <tr>
+      <td>YouTube Data API v3</td>
+      <td>Uploading a video, setting its metadata and thumbnail, reading the channel's own video list and
+      comment threads, and setting the moderation status of a comment on the channel's own video.</td>
+      <td>Owner's own OAuth token, one channel only</td>
+    </tr>
+    <tr>
+      <td>YouTube Analytics API</td>
+      <td>Reading the channel's own views, watch time, average view duration, average view percentage and
+      subscriber figures for reporting.</td>
+      <td>Owner's own OAuth token, one channel only</td>
+    </tr>
+  </table>
+
+  <h2>Authorisation scopes</h2>
+  <p>The authorisation request asks for four scopes, and each one maps to a feature listed above:</p>
+  <ul>
+    <li>Upload a video, so the tool can publish to the owner's own channel.</li>
+    <li>Read the channel's own data, so it can list its own videos and comments.</li>
+    <li>Manage the owner's own account, which the upload flow requires for thumbnail handling.</li>
+    <li>Read the channel's own analytics, so it can produce the reports.</li>
+  </ul>
+  <div class="note">
+    <p>The token is tied to one Google account and one channel. Revoking the grant in the owner's Google
+    account immediately stops the tool from doing anything further.</p>
+  </div>
+
+  <h2>What is stored, and where</h2>
+  <table>
+    <tr><th>Stored item</th><th>Where it lives</th><th>Why</th></tr>
+    <tr><td>OAuth token</td><td>Local file on the owner's computer</td><td>So a run does not need the owner to sign in every time</td></tr>
+    <tr><td>Queue and schedule files</td><td>Local files per day</td><td>To know what has been published and what is still pending</td></tr>
+    <tr><td>Snapshot history of public figures</td><td>Local files</td><td>To compare today's channel figures against earlier readings</td></tr>
+    <tr><td>Run logs</td><td>Local files</td><td>So each run can be verified afterwards</td></tr>
+  </table>
+  <p>None of it is uploaded anywhere except where the run itself is meant to publish. There is no
+  third-party analytics service, no advertising identifier and no tracking of anyone.</p>
+
+  <h2>Failure behaviour</h2>
+  <ul>
+    <li>If authorisation fails, the run stops and reports it. It does not retry with a different account.</li>
+    <li>If a required check fails, the episode is not published. A wrong upload is worse than a late one.</li>
+    <li>If a scheduled task cannot complete, it reports the reason instead of finishing silently.</li>
+  </ul>
+
+  <p>See the <a href="faq.html">FAQ</a> for the questions that usually follow this page, or the
+  <a href="privacy.html">Privacy Policy</a> for how the channel's own data is handled.</p>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
+    <p>Astrobyte is a private automation tool for the Astro and Tech YouTube channel. It is not affiliated
+    with, endorsed by, or sponsored by YouTube or Google.</p>
+    <p>Last updated 27 October 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>

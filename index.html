@@ -3,51 +3,86 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Astrobyte — automation tool for Astro and Tech</title>
-<meta name="description" content="Astrobyte is a private desktop tool used by the Astro and Tech YouTube channel to automate its own publishing and reporting.">
-<style>
-  :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:#0b0f1a; color:#e8ecf4;
-         font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
-  main { max-width:760px; margin:0 auto; padding:64px 24px 96px; }
-  h1 { font-size:44px; letter-spacing:-.02em; margin:0 0 8px; }
-  h2 { font-size:19px; margin:40px 0 10px; color:#9fb4ff; text-transform:uppercase; letter-spacing:.08em; }
-  .lead { font-size:20px; color:#b9c4d8; margin:0 0 28px; }
-  .badge { display:inline-block; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
-           color:#8fa6ff; border:1px solid #23304f; border-radius:999px; padding:5px 12px; margin-bottom:22px; }
-  a { color:#8fb4ff; }
-  ul { padding-left:20px; }
-  li { margin:6px 0; }
-  .card { background:#111726; border:1px solid #1e2740; border-radius:14px; padding:20px 22px; margin:22px 0; }
-  footer { margin-top:56px; padding-top:20px; border-top:1px solid #1e2740; color:#7b879c; font-size:14px; }
-</style>
+<title>Astrobyte, publishing and analytics tool for the Astro and Tech channel</title>
+<meta name="description" content="Astrobyte is a desktop automation tool used by the owner of the Astro and Tech YouTube channel to schedule its own uploads, read its own analytics, and moderate its own comment section.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><img src="icon-64.png" alt="Astrobyte app icon" width="32" height="32">Astrobyte</a>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="features.html">Features</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <span class="badge">Private use</span>
-  <h1>Astrobyte</h1>
-  <p class="lead">A desktop automation tool for the <strong>Astro and Tech</strong> YouTube channel.</p>
+
+  <section class="hero">
+    <span class="badge">Private tool · single user</span>
+    <h1>Astrobyte</h1>
+    <p class="lead">A desktop tool that runs on one computer and automates the publishing workflow of the
+    <strong>Astro and Tech</strong> YouTube channel: scheduling its own uploads, reading its own
+    statistics, and keeping its own comment section clean.</p>
+  </section>
 
   <div class="card">
-    <p style="margin:0">Astrobyte runs on the channel owner's own computer and automates the channel's own
-    workflow: scheduling and uploading videos to the channel, reading the channel's own statistics
-    (views, subscribers, comments, watch time), and hiding obvious spam comments.</p>
+    <p>Astrobyte is not a service and not an app you sign up for. It is a script-driven tool operated by the
+    owner of <a href="https://www.youtube.com/@astroandtech">@astroandtech</a> on the owner's own machine.
+    It talks to the YouTube Data API and the YouTube Analytics API using the owner's own Google
+    authorisation, and it only ever touches that one channel.</p>
   </div>
 
-  <h2>What it is</h2>
-  <ul>
-    <li>A single-user tool, operated by the owner of <a href="https://www.youtube.com/@astroandtech">@astroandtech</a>.</li>
-    <li>It uses the owner's own Google authorisation (OAuth) to talk to the YouTube Data API and YouTube Analytics API.</li>
-    <li>It has no public sign-up, no user accounts, and no third-party users.</li>
-  </ul>
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Publishes and schedules</h3>
+      <p>Uploads finished videos to the channel with their title, description, tags and thumbnail, and places
+      them on a publishing schedule so each one goes public at a planned time.</p>
+    </div>
+    <div class="card">
+      <h3>Reads the channel's own analytics</h3>
+      <p>Pulls views, watch time, subscriber movement and per-video retention for the channel it belongs to,
+      then turns them into a short daily and weekly report.</p>
+    </div>
+    <div class="card">
+      <h3>Moderates comments</h3>
+      <p>Reads comment threads on the channel's own videos and hides obvious spam. Draft replies to real
+      comments are written for the owner to read and approve, never posted automatically.</p>
+    </div>
+    <div class="card">
+      <h3>Prepares publish-ready files</h3>
+      <p>Assembles episodes from a script, generated images and narration, checks the audio and subtitle
+      timing, and writes the caption for each platform before anything is uploaded.</p>
+    </div>
+  </div>
 
   <h2>What it is not</h2>
   <ul>
-    <li>Not a public service or a website you log into.</li>
-    <li>Not a data collection product — it collects no data from anyone.</li>
+    <li>Not a public service, and not a website anyone logs into.</li>
+    <li>Not an app with user accounts. There is exactly one user, the channel owner.</li>
+    <li>Not a data collection product. It collects nothing from anyone, and it has no third-party users.</li>
     <li>Not affiliated with, endorsed by, or sponsored by YouTube or Google.</li>
   </ul>
+
+  <h2>How it fits together</h2>
+  <p>Each run is driven by a short, human-readable task file. The tool authenticates with the channel
+  owner's own Google account, performs the requested step against that channel's own data, and writes a log
+  so the result can be checked afterwards.</p>
+  <p><a href="how-it-works.html">Read the full walkthrough</a>, or see the
+  <a href="features.html">complete feature list</a>.</p>
 
   <h2>Documents</h2>
   <ul>
@@ -56,9 +91,28 @@
   </ul>
 
   <h2>Contact</h2>
-  <p><a href="mailto:akunmabarcz@gmail.com">akunmabarcz@gmail.com</a></p>
+  <p>Questions about the tool, the data it uses, or these pages:
+  <a href="mailto:akunmabarcz@gmail.com">akunmabarcz@gmail.com</a>.
+  See the <a href="contact.html">contact page</a> for what to include.</p>
 
-  <footer>Astrobyte · Last updated 22 October 2026</footer>
 </main>
+
+<footer>
+  <div class="footer-inner">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
+    <p>Astrobyte is a private automation tool for the Astro and Tech YouTube channel. It is not affiliated
+    with, endorsed by, or sponsored by YouTube or Google.</p>
+    <p>Last updated 27 October 2026.</p>
+  </div>
+</footer>
+
 </body>
 </html>

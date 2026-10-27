@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Features · Astrobyte</title>
+<meta name="description" content="What Astrobyte does: upload and scheduling, channel analytics reporting, comment moderation, and assembling publish-ready episode files.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html"><img src="icon-64.png" alt="Astrobyte app icon" width="32" height="32">Astrobyte</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="features.html" aria-current="page">Features</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="breadcrumb"><a href="index.html">Home</a> / Features</p>
+  <h1>Features</h1>
+  <p class="lead">Everything Astrobyte does, in the order it does it. Each feature works against one
+  channel only, using that channel owner's own authorisation.</p>
+
+  <h2>Publishing and scheduling</h2>
+  <div class="card">
+    <ul>
+      <li>Uploads a finished video file to the channel with its title, description, tags and category.</li>
+      <li>Sets the custom thumbnail on the uploaded video.</li>
+      <li>Places the video on a scheduled publishing time so it becomes public when planned, instead of the
+      moment it is uploaded.</li>
+      <li>Keeps its own queue file per day, so a batch of episodes is never published twice or skipped.</li>
+      <li>Reads back the upload result and records the video identifier, so later steps can find the video
+      again without guessing.</li>
+    </ul>
+  </div>
+
+  <h2>Channel analytics and reporting</h2>
+  <div class="card">
+    <ul>
+      <li>Reads views, watch time, average view duration and average view percentage for the channel's own
+      videos through the YouTube Analytics API.</li>
+      <li>Tracks subscriber movement and reports which videos gained or lost views since the last reading.</li>
+      <li>Distinguishes public, unlisted and scheduled videos. A scheduled video showing zero views is
+      normal and is labelled that way rather than reported as a drop.</li>
+      <li>Produces a short daily brief and a longer weekly review, with the numbers behind each claim.</li>
+      <li>Keeps a snapshot history so today's figures can be compared against previous days.</li>
+    </ul>
+  </div>
+
+  <h2>Comment moderation</h2>
+  <div class="card">
+    <ul>
+      <li>Reads the comment threads on the channel's own videos.</li>
+      <li>Flags and hides obvious spam and scam comments. This changes the comment's moderation status on
+      the channel's own video.</li>
+      <li>Writes draft replies to genuine comments for the owner to review. Nothing is posted to a viewer
+      without the owner reading it first.</li>
+      <li>Records what was hidden and what was drafted, so the decisions can be reviewed later.</li>
+    </ul>
+  </div>
+
+  <h2>Episode assembly</h2>
+  <div class="card">
+    <ul>
+      <li>Turns a written script into a finished vertical episode: narration, background music, images with
+      slow movement, and burned-in captions.</li>
+      <li>Aligns every caption line to the point in the narration where it is actually spoken, and checks
+      the result before the file is accepted.</li>
+      <li>Normalises audio loudness to a consistent level across episodes.</li>
+      <li>Writes per-platform captions, with a fixed hashtag set and a length limit per platform.</li>
+    </ul>
+  </div>
+
+  <h2>What Astrobyte deliberately does not do</h2>
+  <div class="card">
+    <ul>
+      <li>It does not create or manage accounts for other people.</li>
+      <li>It does not post replies to viewers on its own. Drafts are for the owner to approve.</li>
+      <li>It does not read or write data belonging to any channel other than its own.</li>
+      <li>It does not sell, share or publish any data, because it has no third-party data to begin with.</li>
+    </ul>
+  </div>
+
+  <p>Next: <a href="how-it-works.html">how a run actually works</a>, including which Google APIs are used
+  and what is stored where.</p>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
+    <p>Astrobyte is a private automation tool for the Astro and Tech YouTube channel. It is not affiliated
+    with, endorsed by, or sponsored by YouTube or Google.</p>
+    <p>Last updated 27 October 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>
